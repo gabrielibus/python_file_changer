@@ -19,8 +19,13 @@ def is_oficio_pdf(file):
     for i in range(pages):
             pageObj = pdfReader.getPage(i)
             text = pageObj.extractText().split("  ")
+            normalized_words = []
             for i in range(len(text)):
-                if text[i].split('\n').count('Oficio No.'):
+                pdf_lines = text[i].split('\n')
+                for j in pdf_lines:
+                    for k in j.split(' '):
+                        normalized_words.append(k.lower())
+                if normalized_words.count('oficio'):
                     pdf_type = True
     file.close()
     os.remove('temp.pdf')
