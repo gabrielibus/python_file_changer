@@ -48,6 +48,9 @@ def change_filenames(folder, files):
         radicate_serial = re.sub("[^0-9]","", upper_folder)[:23]
         # Valido que el radicado tenga 23 dígitos
         if len(radicate_serial) == 23:
+            radicate_serial = radicate_serial[-14:]
+            print(radicate_serial)
+            return
             old_name = file
             new_name = ""
             # Aquí está la lógica para cuando el archivo es un Excel con macros
