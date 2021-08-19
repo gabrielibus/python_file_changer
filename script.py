@@ -2,9 +2,7 @@ import os
 import PyPDF2
 import pikepdf
 
-base_path = 'C:/OD/OneDrive - Consejo Superior de la Judicatura/'
-rad_number = input('Ingrese el número de radicado que desea renombrar: ')
-# rad_number = '12345678901234567890abc'
+folder = input('Por favor ingrese la ruta: (por ejemplo: C:\OD\OneDrive\Consejo Superior de la Judicatura\Cuaderno Tribunal02 \n--> ')
 
 def is_oficio_pdf(file):
     pdf = pikepdf.open(file)
@@ -26,12 +24,12 @@ def is_oficio_pdf(file):
     return pdf_type
 
 def change_filenames(folder, files):
-    folder_extensions = []           
+    files_extensions = []           
     def pdf_counter(files):
         for file in files:
             file_extension = file.split('\\')[-1].split('.')[-1]
-            folder_extensions.append(file_extension)    
-        return folder_extensions.count('pdf')
+            files_extensions.append(file_extension)    
+        return files_extensions.count('pdf')
 
     pdf_counter = pdf_counter(files)
     actas_counter = 0
@@ -55,21 +53,14 @@ def change_filenames(folder, files):
             actas_counter += 1
             os.rename(old_name,new_name)
 
+    print('Los archivos fueron renombrados correctamente')
+
 try:
-    subfolders = [ f.path for f in os.scandir(base_path) if f.is_dir() ]
-    for folder in subfolders:
-        if folder.split('/')[-1] == rad_number: 
-            rad_subfolders = [ f.path for f in os.scandir(folder) if f.is_dir() ]
-            active_subfolder = ""
-            for rad_subfolder in rad_subfolders:
-                if rad_subfolder.split('\\')[-1][:17] == "Cuaderno Tribunal":
-                    active_subfolder = rad_subfolder.split('\\')[-1]
-            active_subfolder = folder + '/' + active_subfolder
-            files = [ f.path for f in os.scandir(active_subfolder) if not f.is_dir() ]
-            change_filenames(active_subfolder, files)
-            print('Los archivos fueron renombrados correctamente')
+    files = [ f.path for f in os.scandir(folder) if not f.is_dir() ]
+    change_filenames(folder, files)
+
 except:
-    print('ERROR!!! ¿El direcorio "' + base_path + '" existe?')
+    print('ERROR!!! ¿El direcorio "' + folder + '" existe?')
 
 
 
