@@ -62,7 +62,10 @@ def change_filenames(folder, files):
                     new_name = folder + r"\01Oficio"+"Remite" + radicate_serial + ".pdf"
                 # Si el pdf no es un Oficio
                 else:
-                    new_name = folder + r"\02Ficha"+"Remite" + radicate_serial + ".pdf" 
+                    if pdf_counter == 1:
+                        new_name = folder + r"\01Ficha"+"Remite" + radicate_serial + ".pdf" 
+                    else: 
+                        new_name = folder + r"\02Ficha"+"Remite" + radicate_serial + ".pdf" 
                 os.rename(old_name,new_name)
             # Aquí está la lógica para cuando el archivo es un PNG
             elif file_extension == 'png':
@@ -72,7 +75,7 @@ def change_filenames(folder, files):
         else:
             print('Algo pasa con el nombre de la carpeta de radicados. No tiene 23 números. Por favor verifique. \n Ningún archivo ha sido modificado')
         print(file_names)
-    print('\nLos archivos fueron renombrados correctamente\n')
+    print('\nLos archivos fueron renombrados correctamente\n Si desea salir presione CTRL C. \n')
 
 try:
     files = [ f.path for f in os.scandir(folder) if not f.is_dir() ]

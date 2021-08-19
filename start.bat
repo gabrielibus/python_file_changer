@@ -1,4 +1,5 @@
 echo off
-python script.py 
-
+:launch
+    python script.py
+    goto:launch
 pause
