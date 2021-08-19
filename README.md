@@ -14,10 +14,11 @@ Ejecutar los siguientes comandos para instalar las librerías de python necesari
 **Eso es todo, ahora estamos listos para correr el script**
 ___
 ## **¿Cómo funciona?**
-Ejecutar el script desde una línea de comandos:  
->`python file_name_changer.py`  
+Doble **doble click** sobre el archivo start.bat o simplemente
+ejecutar el script desde una línea de comandos:  
+>`start.bat`  
 
-A continuación se le pedirá que introduzca el número de radicado (23 dígitos).
+A continuación se le pedirá que introduzca la ruta de la carpeta que contiene los archivos (en el explorador de windows, hacer click en la barra de direcciones, y copiar).
 
 The End
 
